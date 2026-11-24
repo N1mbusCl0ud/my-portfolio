@@ -1,4 +1,4 @@
-Klowd portfolio (MVC)
+Portfolio (MVC)
 
 index.html        the page structure (HTML)
 css/style.css     the look (colors, fonts, layout)
