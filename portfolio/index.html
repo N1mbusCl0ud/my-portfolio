@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This tag makes the page fit phone screens properly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gelo a.k.a Klowd | IT Graduate</title>
+  <meta name="description" content="Portfolio of Gelo a.k.a Klowd, IT graduate in IT support, networks and databases.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="page-progress" id="pageProgress"></div>
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="wrap nav">
+      <a href="#home" class="logo">Klowd<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav>
+        <ul id="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Profile picture: the eyes follow your cursor while it is over this box (see the JavaScript at the bottom).
+           To use a real photo instead, replace the <svg> with an <img> tag. -->
+      <div class="avatar" id="avatar" role="img" aria-label="Profile picture of Gelo">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" fill="#1d2a3b"/>
+          <path d="M12 100c2-22 18-30 38-30s36 8 38 30z" fill="#8fb8ff"/>
+          <rect x="42" y="58" width="16" height="16" rx="6" fill="#d9a67e"/>
+          <ellipse cx="28" cy="46" rx="4" ry="6" fill="#e0ab82"/><ellipse cx="72" cy="46" rx="4" ry="6" fill="#e0ab82"/>
+          <ellipse cx="50" cy="44" rx="22" ry="25" fill="#e8b88f"/>
+          <path d="M28 42c-3-22 10-30 23-30s26 8 22 30c-2-9-6-15-12-17-8 5-24 5-33 17z" fill="#2a2018"/>
+          <path d="M33 37q5-3 10-1M57 36q5-2 10 1" stroke="#2a2018" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <circle cx="39" cy="46" r="6.5" fill="#fff"/><circle cx="61" cy="46" r="6.5" fill="#fff"/>
+          <circle class="pupil" cx="39" cy="46" r="3" fill="#1b1410"/><circle class="pupil" cx="61" cy="46" r="3" fill="#1b1410"/>
+          <path d="M48 57q2 2 4 0" stroke="#b9805c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M43 62q7 5 14 0" stroke="#8a4b3a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+      <div class="glow" id="glow"></div>
+      <div class="wrap">
+        <p class="hi">Hi, I’m Gelo, an IT graduate known online as</p>
+        <!-- The six clouds fade in and out around the name. Edit their size and position in the CSS (.c1 to .c6) -->
+        <div class="name-wrap">
+          <span class="cloud c1" aria-hidden="true">☁️</span>
+          <span class="cloud c2" aria-hidden="true">☁️</span>
+          <span class="cloud c3" aria-hidden="true">☁️</span>
+          <span class="cloud c4" aria-hidden="true">☁️</span>
+          <span class="cloud c5" aria-hidden="true">☁️</span>
+          <span class="cloud c6" aria-hidden="true">☁️</span>
+          <h1>Klowd</h1>
+        </div>
+        <p class="role">I work with <span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+        <p class="aka">I keep systems, networks and databases running, and I’m helping my team roll out SAP Business One.</p>
+        <p class="status"><span class="dot" aria-hidden="true"></span>Currently helping roll out SAP Business One</p><br>
+        <a href="#projects" class="btn primary">See my projects</a>
+        <a href="#contact" class="btn">Get in touch</a>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about">
+      <div class="wrap">
+        <h2>About me</h2>
+        <div class="about-grid">
+          <div id="aboutText"></div>
+
+          <!-- Drawn by the VIEW from Model.timeline (see the script at the bottom) -->
+          <ol class="timeline" id="timeline"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div id="skillsList"></div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects">
+      <div class="wrap pin">
+        <h2>Projects</h2>
+
+        <!-- Scroll-driven carousel. The cards are drawn by the VIEW from Model.projects (see the script at the bottom). -->
+        <div class="track" id="track" aria-label="Projects"></div>
+        <div class="ctrl">
+          <button id="prev" aria-label="Previous project">‹</button>
+          <button id="next" aria-label="Next project">›</button>
+        </div>
+        <div class="bar"><span id="barFill"></span></div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <div class="contact-box">
+          <p>Have a role, project or question? Send a message and it will open in your email app.</p>
+
+          <!-- This form doesn't need a server: the JavaScript below builds an email link -->
+          <form id="contactForm">
+            <label>Your name <input type="text" id="name" required autocomplete="name"></label>
+            <label>Message <textarea id="msg" rows="4" required></textarea></label>
+            <div><button class="btn primary" type="submit">Send email</button></div>
+            <p id="formNote" role="status"></p>
+          </form>
+
+          <!-- Icon links. Hover an icon to see its name. -->
+          <div class="links icons">
+            <a data-link="email" aria-label="Email gelo@gmail.com" title="gelo@gmail.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+            <!-- TODO: replace the "#" in the two links below with your real LinkedIn and GitHub URLs -->
+            <a data-link="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a data-link="github" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Gelo a.k.a Klowd</div>
+  </footer>
+
+  <!-- Load order matters: Model first, then View, then Controller -->
+  <script src="js/model.js"></script>
+  <script src="js/view.js"></script>
+  <script src="js/controller.js"></script>
+</body>
+</html>

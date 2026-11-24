@@ -1,0 +1,234 @@
+/* style.css: all the colors, fonts and layout. Colors live in :root below. */
+    /* ========== 1. DESIGN TOKENS ==========
+       Change a color here and it updates the whole site. */
+    :root {
+      color-scheme: dark;
+      --bg: #0d1219;          /* page background (deep blue-slate) */
+      --surface: #151c26;     /* slightly lighter panels */
+      --line: #243040;        /* thin borders */
+      --text: #e6ebf2;        /* main text */
+      --muted: #8d9bb0;       /* softer text */
+      --accent: #8fb8ff;      /* sky blue, a nod to "Klowd" */
+      --font-head: "Bricolage Grotesque", system-ui, sans-serif;
+      --font-body: "IBM Plex Sans", system-ui, sans-serif;
+      --max: 1040px;          /* max content width */
+
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; height: 100%; }  /* smooth scrolling + offset for the header */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 400 1.0625rem/1.65 var(--font-body);
+    }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    /* Shared layout helper: centers content and adds side space */
+    .wrap { width: min(var(--max), 100% - 2.5rem); margin-inline: auto; }
+    section { padding: 6rem 0; }
+    h2 { font: 700 clamp(1.8rem, 4vw, 2.5rem)/1.15 var(--font-head); margin: 0 0 2.5rem; letter-spacing: -0.02em; }
+
+    /* ========== 2. HEADER / NAV ========== */
+    header {
+      position: sticky; top: 0; z-index: 20;
+      padding-top: env(safe-area-inset-top, 0px);
+      background: rgba(13, 18, 25, 0.85); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font: 800 1.25rem var(--font-head); }
+    .logo span { color: var(--accent); }
+    nav ul { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+    nav a { color: var(--muted); font-size: 0.95rem; padding: 0.4rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+    nav a:hover, nav a.active { color: var(--text); border-color: var(--accent); }
+    .menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 0.45rem 0.8rem; font: inherit; cursor: pointer; }
+
+    /* ========== 3. HERO ========== */
+    .hero { padding: 7rem 0 6rem; position: relative; overflow: hidden; }
+    /* A soft "cloud" glow that follows the mouse (the one special effect on this page) */
+    .glow {
+      position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(143,184,255,.18), transparent 65%);
+      left: 60%; top: -10%; pointer-events: none; transition: transform .4s ease-out;
+    }
+    .hero p.hi { color: var(--muted); margin: 0 0 1rem; }
+    .hero h1 {
+      font: 800 clamp(3.5rem, 13vw, 9rem)/0.95 var(--font-head);
+      letter-spacing: -0.045em; margin: 0 0 1.5rem;
+    }
+    .hero .aka { color: var(--muted); font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin: 0 0 2.5rem; max-width: 34rem; }
+    .btn {
+      display: inline-block; padding: 0.8rem 1.5rem; border-radius: 999px;
+      border: 1px solid var(--line); font-weight: 500; margin-right: 0.6rem; margin-bottom: 0.6rem;
+      transition: transform .2s, background .2s, border-color .2s, color .2s; cursor: pointer; font-family: inherit; font-size: 1rem; color: var(--text); background: transparent;
+    }
+    .btn:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #0d1219; border-color: var(--accent); }
+    .btn.primary:hover { background: #b0cdff; }
+
+    /* ========== 4. ABOUT ========== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; }
+    .about-grid p { margin: 0 0 1rem; color: var(--muted); max-width: 60ch; }
+    .about-grid p strong { color: var(--text); font-weight: 500; }
+    /* Timeline: this IS a sequence of roles, so a line + dots makes sense */
+    .timeline { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 1px solid var(--line); }
+    .timeline li { position: relative; padding-bottom: 2rem; }
+    .timeline li::before {
+      content: ""; position: absolute; left: calc(-1.5rem - 5px); top: 0.55rem;
+      width: 9px; height: 9px; border-radius: 50%; background: var(--line); transition: background .2s;
+    }
+    .timeline li:hover::before, .timeline li.now::before { background: var(--accent); }
+    .timeline h3 { font: 700 1.1rem var(--font-head); margin: 0; }
+    .timeline span { color: var(--muted); font-size: 0.95rem; }
+
+    /* ========== 5. SKILLS ========== */
+    .skill-group { display: grid; grid-template-columns: 180px 1fr; gap: 1rem; padding: 1.4rem 0; border-top: 1px solid var(--line); }
+    .skill-group:last-child { border-bottom: 1px solid var(--line); }
+    .skill-group h3 { margin: 0; font: 500 1rem var(--font-body); color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .chip { padding: 0.4rem 1rem; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; transition: border-color .2s, transform .2s, color .2s; }
+    .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* ========== 6. PROJECTS ========== */
+    .project {
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 1.5rem;
+      padding: 2rem 1rem; margin: 0 -1rem; border-top: 1px solid var(--line);
+      border-radius: 12px; transition: background .25s, transform .25s;
+    }
+    .project:hover { background: var(--surface); transform: translateX(8px); }
+    .project h3 { margin: 0; font: 700 1.4rem/1.25 var(--font-head); transition: color .2s; }
+    .project:hover h3 { color: var(--accent); }
+    .project p { margin: 0 0 0.8rem; color: var(--muted); }
+    .tags { color: var(--accent); font-size: 0.9rem; }
+
+    /* ========== 7. CONTACT ========== */
+    .contact-box { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: clamp(1.5rem, 5vw, 3.5rem); }
+    .contact-box > p { color: var(--muted); max-width: 46ch; margin: 0 0 2rem; }
+    form { display: grid; gap: 1rem; max-width: 520px; margin-bottom: 2rem; }
+    label { display: grid; gap: 0.4rem; font-size: 0.95rem; color: var(--muted); }
+    input, textarea {
+      font: inherit; color: var(--text); background: var(--bg);
+      border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem 1rem; transition: border-color .2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    .links a { color: var(--muted); margin-right: 1.5rem; border-bottom: 1px solid var(--line); transition: color .2s, border-color .2s; }
+    .links a:hover { color: var(--accent); border-color: var(--accent); }
+    #formNote { color: var(--accent); margin: 0; min-height: 1.5em; }
+
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); }
+
+    /* ========== 8. MOBILE (screens under 760px wide) ========== */
+    @media (max-width: 760px) {
+      section { padding: 4rem 0; }
+      .menu-btn { display: block; }
+      nav ul {
+        display: none; position: absolute; left: 0; right: 0; top: 100%;
+        flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0.5rem 1.25rem 1rem;
+      }
+      nav ul.open { display: flex; }
+      nav li a { display: block; padding: 0.8rem 0; }
+      .about-grid, .project, .skill-group { grid-template-columns: 1fr; }
+      .project { margin: 0; padding: 1.5rem 0.5rem; }
+      .project:hover { transform: none; }
+    }
+
+    /* ===== NEW: floating clouds around the name ===== */
+    .name-wrap { position: relative; display: block; width: fit-content; font-size: clamp(3.5rem, 13vw, 9rem); padding: 0.15em 0.6em; margin-bottom: 1.5rem; }
+    .hero .name-wrap h1 { font-size: 1em; margin: 0; }
+    .cloud {
+      position: absolute; line-height: 1; opacity: 0; pointer-events: none; user-select: none;
+      filter: drop-shadow(0 0 0.2em rgba(143,184,255,.35));
+      animation: cloudFloat var(--d, 9s) ease-in-out var(--delay, 0s) infinite; /* each cloud has its own speed and start time */
+    }
+    /* Sizes are in em, so they scale with the name: above 1em = bigger than the word, below = smaller */
+    .c1 { left: -0.45em; top: -0.4em; font-size: 1.5em; --d: 10s; }
+    .c2 { right: -0.45em; bottom: -0.35em; font-size: 1.25em; --d: 12s; --delay: -4s; }
+    .c3 { left: 0.35em; bottom: -0.2em; font-size: 0.45em; --d: 7s; --delay: 1s; }
+    .c4 { right: 0.3em; top: -0.2em; font-size: 0.35em; --d: 8s; --delay: 3s; }
+    .c5 { left: 45%; top: -0.5em; font-size: 0.8em; --d: 11s; --delay: -6s; }
+    .c6 { left: 55%; bottom: -0.3em; font-size: 0.25em; --d: 6s; --delay: 2s; }
+    /* Fade in, drift, fade out, then repeat */
+    @keyframes cloudFloat {
+      0%   { opacity: 0;   transform: translate(-0.25em, 0.1em) scale(0.7); }
+      25%  { opacity: .95; }
+      65%  { opacity: .95; transform: translate(0.15em, -0.15em) scale(1); }
+      100% { opacity: 0;   transform: translate(0.4em, -0.05em) scale(1.15); }
+    }
+
+    /* ===== NEW: profile picture with following eyes ===== */
+    .avatar {
+      width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex: none; margin-left: 1rem;
+      border: 1px solid var(--line); background: var(--surface);
+      transform-origin: top right; transition: transform .25s, border-color .25s;
+    }
+    .avatar:hover { transform: scale(1.9); border-color: var(--accent); }  /* grows so the eyes are easy to see */
+    .avatar svg { width: 100%; height: 100%; display: block; }
+    .pupil { transition: transform .08s linear; }
+
+    /* ===== NEW: projects carousel ===== */
+    .track {
+      display: flex; gap: 1.25rem; overflow-x: hidden; padding: 0.5rem 0.25rem 1.25rem;
+      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    }
+    .card {
+      flex: 0 0 min(380px, 82%); scroll-snap-align: start; display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+      transition: transform .25s, border-color .25s;
+    }
+    .card:hover { transform: translateY(-6px); border-color: var(--accent); }
+    .pic { aspect-ratio: 16 / 10; background: #101720; border-bottom: 1px solid var(--line); }
+    .pic svg { width: 100%; height: 100%; display: block; }
+    .desc { padding: 1.2rem 1.3rem 1.4rem; }
+    .desc h3 { margin: 0 0 0.5rem; font: 700 1.25rem/1.25 var(--font-head); }
+    .desc p { margin: 0 0 0.8rem; color: var(--muted); font-size: 1rem; }
+    .ctrl { display: flex; gap: 0.6rem; margin-top: 0.5rem; }
+    .ctrl button {
+      width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: transparent;
+      color: var(--text); font-size: 1.5rem; line-height: 1; cursor: pointer; transition: border-color .2s, transform .2s, opacity .2s;
+    }
+    .ctrl button:hover:not(:disabled) { border-color: var(--accent); transform: translateY(-2px); }
+    .ctrl button:disabled { opacity: .3; cursor: default; }
+
+    /* ===== NEW: Projects section pins to the screen while page scrolling moves the carousel ===== */
+    #projects { padding: 0; }  /* the script sets this section's height to create the extra scroll distance */
+    .pin {
+      position: sticky; top: calc(64px + env(safe-area-inset-top, 0px));
+      min-height: calc(100vh - 64px - env(safe-area-inset-top, 0px));
+      padding-block: 2.5rem; display: flex; flex-direction: column; justify-content: center;
+    }
+    .pin h2 { margin-bottom: 1.5rem; }
+    .bar { height: 3px; background: var(--line); border-radius: 3px; margin-top: 1.25rem; overflow: hidden; }
+    .bar span { display: block; height: 100%; width: 0; background: var(--accent); }
+    @media (max-height: 720px) { .card { flex-basis: min(300px, 82%); } .pic { aspect-ratio: 16 / 9; } }
+
+    /* ===== NEW: extras ===== */
+    .page-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--accent); z-index: 30; }  /* page reading progress */
+    .role { margin: 0 0 0.6rem; font-size: clamp(1.1rem, 2.5vw, 1.4rem); }  /* typing line */
+    .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--accent); margin-left: 3px; vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero .aka { margin-bottom: 1.5rem; }
+    .status { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid var(--line); border-radius: 999px; padding: 0.4rem 1rem; margin: 0 0 1.75rem; color: var(--muted); font-size: 0.95rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #7fd3a5; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(127,211,165,.6); } 100% { box-shadow: 0 0 0 10px rgba(127,211,165,0); } }
+
+    /* ===== NEW: round icon buttons in Contact ===== */
+    .links.icons { display: flex; gap: 0.8rem; }
+    .links.icons a {
+      width: 48px; height: 48px; display: grid; place-items: center; margin: 0;
+      border: 1px solid var(--line); border-radius: 50%; color: var(--muted);
+      transition: color .2s, border-color .2s, transform .2s;
+    }
+    .links.icons a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+    .links.icons svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Respect people who turn off animations in their device settings */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+      .cloud { animation: none; opacity: .6; }
+      .dot, .caret { animation: none; }
+    }
+  
