@@ -25,7 +25,7 @@ const Model = {
       "My path began as an intern in the HR Office. After graduating, I worked as a Quality Assurance Generalist and in administration at J&T Express, and I’m now in IT support for networks and databases in the Finance Section.",
       "Today I help implement SAP Business One. I’m quick to learn, adaptable and reliable, and I like turning everyday office problems into simple tools."
     ],
-    email: "gelo@gmail.com",
+    email: "angelocastanieto084@gmail.com",
     // TODO: replace the "#" with your real profile links
     links: { linkedin: "#", github: "#" },
     // Words the typing effect in the hero cycles through
